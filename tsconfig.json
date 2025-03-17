@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "module": "preserve",
+    "lib": ["es2023", "dom"],
+    "outDir": "dist/",
+    "declaration": true,
+    "declarationMap": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2023",
+    "sourceMap": true,
+    "incremental": true,
+    "strictNullChecks": true,
+    "strict": true,
+    "strictBindCallApply": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["src", "eslint.config.ts"],
+  "exclude": ["node_modules", "dist"]
+}

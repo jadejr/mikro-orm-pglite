@@ -1,0 +1,70 @@
+{
+  "name": "@jadejr/mikro-orm-pglite",
+  "author": "Johnny Robeson <github@localmomentum.net>",
+  "license": "MIT",
+  "keywords": [
+    "mikro-orm",
+    "pglite",
+    "postgresql",
+    "postgres"
+  ],
+  "type": "module",
+  "version": "1.0.0",
+  "description": "A mikro-orm driver for pglite",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json",
+    "test": "echo \"Error: All tests are in a forked mikro-orm repo\" && exit 1",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "prepublishOnly": "pnpm run build",
+    "prepare": "pnpm run build"
+  },
+  "dependencies": {
+    "@electric-sql/pglite": "^0.2.17",
+    "@jadejr/kysely-pglite": "^1.0.1",
+    "@mikro-orm/knex": "7.0.0-dev.7",
+    "@mikro-orm/postgresql": "7.0.0-dev.7"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.24.0",
+    "@mikro-orm/core": "7.0.0-dev.7",
+    "@types/emscripten": "^1.40.1",
+    "@types/node": "^22.14.0",
+    "@types/pg": "^8.11.11",
+    "@typescript-eslint/eslint-plugin": "^8.29.0",
+    "eslint": "^9.24.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-prettier": "^5.2.6",
+    "kysely": "https://pkg.pr.new/kysely-org/kysely/kysely@2b7007e",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.29.0"
+  },
+  "peerDependencies": {
+    "@mikro-orm/core": "7.0.0-dev.7",
+    "kysely": "*"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jadejr/mikro-orm-pglite"
+  },
+  "engines": {
+    "node": ">= 22.11.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@jadejr/kysely-pglite": "patches/@jadejr__kysely-pglite.patch"
+    }
+  }
+}
