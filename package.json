@@ -1,0 +1,60 @@
+{
+  "name": "mikro-orm-pglite",
+  "author": "Johnny Robeson <johnny@localmomentum.net>",
+  "license": "MIT",
+  "keywords": [
+    "mikro-orm",
+    "pglite",
+    "postgresql",
+    "postgres"
+  ],
+  "type": "module",
+  "version": "1.0.0",
+  "description": "A mikro-orm driver for pglite",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: All tests are in a forked mikro-orm repo\" && exit 1",
+    "format": "prettier --write \"src/**/*.ts\""
+  },
+  "dependencies": {
+    "@electric-sql/pglite": "^0.2.17",
+    "@mikro-orm/knex": "7.0.0-dev.7",
+    "@mikro-orm/postgresql": "7.0.0-dev.7",
+    "kysely-pglite": "^0.6.1"
+  },
+  "devDependencies": {
+    "@mikro-orm/core": "7.0.0-dev.7",
+    "@types/emscripten": "^1.40.0",
+    "@types/node": "^22.13.10",
+    "@types/pg": "^8.11.11",
+    "kysely": "https://pkg.pr.new/kysely-org/kysely/kysely@2b7007e",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.2"
+  },
+  "peerDependencies": {
+    "@mikro-orm/core": "7.0.0-dev.7",
+    "kysely": "*"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mikro-orm/mikro-orm.git"
+  },
+  "engines": {
+    "node": ">= 22.11.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "kysely-codegen": "^0.18.0"
+    },
+    "patchedDependencies": {
+      "kysely-pglite": "patches/kysely-pglite.patch"
+    }
+  }
+}
