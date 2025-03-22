@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { KyselyPGlite } from 'kysely-pglite';
 import { PGlite, types, type PGliteOptions } from '@electric-sql/pglite';
 import { citext } from '@electric-sql/pglite/contrib/citext';
+import { vector } from '@electric-sql/pglite/vector';
 import { AbstractSqlConnection, type ConnectionConfig, Utils } from '@mikro-orm/knex';
 
 import { PGliteDriver } from './kysely/PGliteDriver.js';
@@ -56,7 +57,7 @@ export class PgLiteConnection extends AbstractSqlConnection {
       ret.username = ret.user;
     }
 
-    ret.extensions = { citext };
+    ret.extensions = { citext, vector };
 
     return Utils.mergeConfig(ret, overrides);
   }
