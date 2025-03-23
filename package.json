@@ -39,6 +39,9 @@
     "@mikro-orm/core": "7.0.0-dev.7",
     "kysely": "*"
   },
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/mikro-orm/mikro-orm.git"
