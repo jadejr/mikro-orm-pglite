@@ -1,13 +1,12 @@
 import { readFile } from 'node:fs/promises';
-import { KyselyPGlite } from 'kysely-pglite';
-import { PGlite, types, type PGliteOptions } from '@electric-sql/pglite';
+
+import { PGlite, types } from '@electric-sql/pglite';
 import { citext } from '@electric-sql/pglite/contrib/citext';
 import { vector } from '@electric-sql/pglite/vector';
+import { PGliteDialect, type PGliteDialectConfig } from '@jadejr/kysely-pglite';
 import { AbstractSqlConnection, type ConnectionConfig, Utils } from '@mikro-orm/knex';
 
-import { PGliteDriver } from './kysely/PGliteDriver.js';
-
-type PgLiteConnectionConfig = ConnectionConfig & PGliteOptions;
+type PgLiteConnectionConfig = ConnectionConfig & PGliteDialectConfig;
 
 export class PgLiteConnection extends AbstractSqlConnection {
   protected database!: PGlite;
@@ -16,12 +15,11 @@ export class PgLiteConnection extends AbstractSqlConnection {
     const options = this.mapOptions(overrides);
     // PGlite doesn't need or use host, so remove it
     delete options.host;
-    this.database = new PGlite(options);
-    const { dialect } = new KyselyPGlite(this.database);
-    dialect.createDriver = () =>
-      new PGliteDriver(this.database, {
-        onCreateConnection: this.options.onCreateConnection ?? this.config.get('onCreateConnection'),
-      });
+    this.database = new PGlite(options.PGliteOptions);
+    const dialect = new PGliteDialect({
+      PGlite: this.database,
+      ...(options.onCreateConnection ? { onCreateConnection: this.config.get('onCreateConnection') } : {}),
+    });
 
     return dialect;
   }
@@ -30,7 +28,8 @@ export class PgLiteConnection extends AbstractSqlConnection {
     const ret = { ...this.getConnectionOptions() } as PgLiteConnectionConfig;
 
     // use `select typname, oid, typarray from pg_type order by oid` to get the list of OIDs
-    ret.parsers = {
+    const pgLiteOptions: PGliteDialectConfig['PGliteOptions'] = {};
+    pgLiteOptions.parsers = {
       [types.DATE]: (str: string) => str,
       [types.TIMESTAMP]: (str: string) => str,
       [types.TIMESTAMPTZ]: (str: string) => str,
@@ -51,13 +50,15 @@ export class PgLiteConnection extends AbstractSqlConnection {
     };
     // if not using 'host', then there is no dataDir.
     if (ret.host && !['localhost', ''].includes(ret.host)) {
-      ret.dataDir = ret.host;
+      pgLiteOptions.dataDir = ret.host;
     }
     if (ret.user) {
-      ret.username = ret.user;
+      pgLiteOptions.username = ret.user;
     }
 
-    ret.extensions = { citext, vector };
+    pgLiteOptions.extensions = { citext, vector };
+
+    ret.PGliteOptions = pgLiteOptions;
 
     return Utils.mergeConfig(ret, overrides);
   }
@@ -73,7 +74,7 @@ export class PgLiteConnection extends AbstractSqlConnection {
     }
 
     return {
-      affectedRows: res.affectedRows > 0 ? res.affectedRows : res.rows.length,
+      affectedRows: res.numAffectedRows > 0 ? Number(res.numAffectedRows) : res.rows.length,
       ...(res.insertId ? { insertId: res.insertId } : {}),
       row: res.rows[0],
       rows: res.rows,
