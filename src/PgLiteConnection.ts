@@ -1,8 +1,9 @@
 import { readFile } from 'node:fs/promises';
-import { PGliteDialect, type PGliteDialectConfig } from 'kysely-pglite';
+
 import { PGlite, types } from '@electric-sql/pglite';
 import { citext } from '@electric-sql/pglite/contrib/citext';
 import { vector } from '@electric-sql/pglite/vector';
+import { PGliteDialect, type PGliteDialectConfig } from '@jadejr/kysely-pglite';
 import { AbstractSqlConnection, type ConnectionConfig, Utils } from '@mikro-orm/knex';
 
 type PgLiteConnectionConfig = ConnectionConfig & PGliteDialectConfig;

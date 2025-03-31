@@ -22,9 +22,9 @@
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.2.17",
+    "@jadejr/kysely-pglite": "^1.0.0",
     "@mikro-orm/knex": "7.0.0-dev.7",
-    "@mikro-orm/postgresql": "7.0.0-dev.7",
-    "kysely-pglite": "github:jadejr/kysely-pglite#fork"
+    "@mikro-orm/postgresql": "7.0.0-dev.7"
   },
   "devDependencies": {
     "@mikro-orm/core": "7.0.0-dev.7",
@@ -51,7 +51,7 @@
   },
   "pnpm": {
     "patchedDependencies": {
-      "kysely-pglite": "patches/kysely-pglite.patch"
+      "@jadejr/kysely-pglite": "patches/@jadejr__kysely-pglite.patch"
     }
   }
 }

@@ -4,13 +4,10 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  kysely-codegen: ^0.18.0
-
 patchedDependencies:
-  kysely-pglite:
-    hash: 4d134d071560443a429efba1d0c4448e97127cfc6788581a24510f24e12935c2
-    path: patches/kysely-pglite.patch
+  '@jadejr/kysely-pglite':
+    hash: 50c4e624c9deb993d05a1d2562e71936bc372fab83e7edd0970a490105777cd3
+    path: patches/@jadejr__kysely-pglite.patch
 
 importers:
 
@@ -19,15 +16,15 @@ importers:
       '@electric-sql/pglite':
         specifier: ^0.2.17
         version: 0.2.17
+      '@jadejr/kysely-pglite':
+        specifier: ^1.0.0
+        version: 1.0.0(patch_hash=50c4e624c9deb993d05a1d2562e71936bc372fab83e7edd0970a490105777cd3)(@electric-sql/pglite@0.2.17)(kysely@https://pkg.pr.new/kysely-org/kysely/kysely@2b7007e)(pg@8.13.3)(typescript@5.8.2)
       '@mikro-orm/knex':
         specifier: 7.0.0-dev.7
         version: 7.0.0-dev.7(@mikro-orm/core@7.0.0-dev.7)
       '@mikro-orm/postgresql':
         specifier: 7.0.0-dev.7
         version: 7.0.0-dev.7(@mikro-orm/core@7.0.0-dev.7)(kysely@https://pkg.pr.new/kysely-org/kysely/kysely@2b7007e)
-      kysely-pglite:
-        specifier: github:jadejr/kysely-pglite#fork
-        version: https://codeload.github.com/jadejr/kysely-pglite/tar.gz/7e1297f733d79fe65bb05d4c54d805d677ec4c57(patch_hash=4d134d071560443a429efba1d0c4448e97127cfc6788581a24510f24e12935c2)(@electric-sql/pglite@0.2.17)(kysely-bun-sqlite@0.3.2(kysely@https://pkg.pr.new/kysely-org/kysely/kysely@2b7007e))(kysely@https://pkg.pr.new/kysely-org/kysely/kysely@2b7007e)(pg@8.13.3)(typescript@5.8.2)
     devDependencies:
       '@mikro-orm/core':
         specifier: 7.0.0-dev.7
@@ -63,6 +60,14 @@ packages:
 
   '@electric-sql/pglite@0.2.17':
     resolution: {integrity: sha512-qEpKRT2oUaWDH6tjRxLHjdzMqRUGYDnGZlKrnL4dJ77JVMcP2Hpo3NYnOSPKdZdeec57B6QPprCUFg0picx5Pw==}
+
+  '@jadejr/kysely-pglite@1.0.0':
+    resolution: {integrity: sha512-NbopSmC4Mm5W/ivewzpvBiomy0bz+hJ2KwGXC3hNZLc/pxVOSXa2sgkLEPEPVf+10eq1XTGqbkVEsdg/Bb5mKg==}
+    version: 1.0.0
+    hasBin: true
+    peerDependencies:
+      '@electric-sql/pglite': '*'
+      kysely: https://pkg.pr.new/kysely-org/kysely/kysely@2b7007e
 
   '@mikro-orm/core@7.0.0-dev.7':
     resolution: {integrity: sha512-aG/1/5KSZiV/RFXE8quSQZhR9IUnpyq5nF3qInxGU4pjvyPFhHp2aoTzt1jBkfFXhWoHeSg1BnpndKwNBeMSAg==}
@@ -114,9 +119,6 @@ packages:
   '@types/pg@8.11.11':
     resolution: {integrity: sha512-kGT1qKM8wJQ5qlawUrEkXgvMSXoV213KfMGXcwfDwUIfUHXqXYXOfS1nE1LINRJVVVx5wCm70XnFlMHaIcQAfw==}
 
-  '@types/ws@8.18.0':
-    resolution: {integrity: sha512-8svvI3hMyvN0kKCJMvTJP/x6Y/EoQbepff882wL+Sn5QsXb3etnamgrJq4isrBxSJj5L2AuXcI0+bgkoAXGUJw==}
-
   ansi-escapes@4.3.2:
     resolution: {integrity: sha512-gKXj5ALrKWQLsYG9jlTRmR/xKluxHV+Z9QEwNIgCfM1/uwPMCuzVVnh5mwTd+OuBZcwSIMbqssNWRm1lE51QaQ==}
     engines: {node: '>=8'}
@@ -159,9 +161,6 @@ packages:
   braces@3.0.3:
     resolution: {integrity: sha512-yQbXgO/OSZVD2IsiLlro+7Hf6Q18EJrKSEsdoMzKePKXct3gvD8oLcOQdIzGupr5Fj+EDe8gO/lxc1BzfMpxvA==}
     engines: {node: '>=8'}
-
-  bun-types@1.2.7:
-    resolution: {integrity: sha512-P4hHhk7kjF99acXqKvltyuMQ2kf/rzIw3ylEDpCxDS9Xa0X0Yp/gJu/vDCucmWpiur5qJ0lwB2bWzOXa2GlHqA==}
 
   callsites@3.1.0:
     resolution: {integrity: sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==}
@@ -416,13 +415,6 @@ packages:
   jsonfile@6.1.0:
     resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
 
-  kysely-bun-sqlite@0.3.2:
-    resolution: {integrity: sha512-YucMcOGGxNCmlAnkvNfTKZX6Bk1sYsuVVXlQN/5ZUgerlq/J9/EuR3aMOOZ25ASLM7oMglSxfeQxkiw0+hrEOQ==}
-    version: 0.3.2
-    engines: {bun: '>=1'}
-    peerDependencies:
-      kysely: ^0.27.2
-
   kysely-codegen@0.18.3:
     resolution: {integrity: sha512-u2PFL1i8kaD+Jhcd5aIGPLgDqNriWvfWKtA7+kkvR2zZxr3DkdvT/B3nJWObZ/uj+GeONq0TChvf6mf6RqqWuA==}
     version: 0.18.3
@@ -457,14 +449,6 @@ packages:
         optional: true
       tedious:
         optional: true
-
-  kysely-pglite@https://codeload.github.com/jadejr/kysely-pglite/tar.gz/7e1297f733d79fe65bb05d4c54d805d677ec4c57:
-    resolution: {tarball: https://codeload.github.com/jadejr/kysely-pglite/tar.gz/7e1297f733d79fe65bb05d4c54d805d677ec4c57}
-    version: 0.6.1
-    hasBin: true
-    peerDependencies:
-      '@electric-sql/pglite': '*'
-      kysely: https://pkg.pr.new/kysely-org/kysely/kysely@2b7007e
 
   kysely@https://pkg.pr.new/kysely-org/kysely/kysely@2b7007e:
     resolution: {tarball: https://pkg.pr.new/kysely-org/kysely/kysely@2b7007e}
@@ -778,6 +762,32 @@ snapshots:
 
   '@electric-sql/pglite@0.2.17': {}
 
+  '@jadejr/kysely-pglite@1.0.0(patch_hash=50c4e624c9deb993d05a1d2562e71936bc372fab83e7edd0970a490105777cd3)(@electric-sql/pglite@0.2.17)(kysely@https://pkg.pr.new/kysely-org/kysely/kysely@2b7007e)(pg@8.13.3)(typescript@5.8.2)':
+    dependencies:
+      '@electric-sql/pglite': 0.2.17
+      '@oclif/core': 4.2.10
+      '@repeaterjs/repeater': 3.0.6
+      '@sindresorhus/is': 7.0.1
+      chokidar: 4.0.3
+      consola: 3.4.2
+      fs-extra: 11.3.0
+      jiti: 2.4.2
+      kysely: https://pkg.pr.new/kysely-org/kysely/kysely@2b7007e
+      kysely-codegen: 0.18.3(kysely@https://pkg.pr.new/kysely-org/kysely/kysely@2b7007e)(pg@8.13.3)(typescript@5.8.2)
+      radash: 12.1.0
+      tinyglobby: 0.2.12
+    transitivePeerDependencies:
+      - '@libsql/kysely-libsql'
+      - '@tediousjs/connection-string'
+      - better-sqlite3
+      - kysely-bun-sqlite
+      - kysely-bun-worker
+      - mysql2
+      - pg
+      - tarn
+      - tedious
+      - typescript
+
   '@mikro-orm/core@7.0.0-dev.7':
     dependencies:
       dataloader: 2.2.3
@@ -854,11 +864,6 @@ snapshots:
       pg-protocol: 1.8.0
       pg-types: 4.0.2
 
-  '@types/ws@8.18.0':
-    dependencies:
-      '@types/node': 22.13.14
-    optional: true
-
   ansi-escapes@4.3.2:
     dependencies:
       type-fest: 0.21.3
@@ -895,12 +900,6 @@ snapshots:
   braces@3.0.3:
     dependencies:
       fill-range: 7.1.1
-
-  bun-types@1.2.7:
-    dependencies:
-      '@types/node': 22.13.14
-      '@types/ws': 8.18.0
-    optional: true
 
   callsites@3.1.0: {}
 
@@ -1127,13 +1126,7 @@ snapshots:
     optionalDependencies:
       graceful-fs: 4.2.11
 
-  kysely-bun-sqlite@0.3.2(kysely@https://pkg.pr.new/kysely-org/kysely/kysely@2b7007e):
-    dependencies:
-      bun-types: 1.2.7
-      kysely: https://pkg.pr.new/kysely-org/kysely/kysely@2b7007e
-    optional: true
-
-  kysely-codegen@0.18.3(kysely-bun-sqlite@0.3.2(kysely@https://pkg.pr.new/kysely-org/kysely/kysely@2b7007e))(kysely@https://pkg.pr.new/kysely-org/kysely/kysely@2b7007e)(pg@8.13.3)(typescript@5.8.2):
+  kysely-codegen@0.18.3(kysely@https://pkg.pr.new/kysely-org/kysely/kysely@2b7007e)(pg@8.13.3)(typescript@5.8.2):
     dependencies:
       chalk: 4.1.2
       cosmiconfig: 9.0.0(typescript@5.8.2)
@@ -1146,35 +1139,8 @@ snapshots:
       pluralize: 8.0.0
       zod: 3.24.2
     optionalDependencies:
-      kysely-bun-sqlite: 0.3.2(kysely@https://pkg.pr.new/kysely-org/kysely/kysely@2b7007e)
       pg: 8.13.3
     transitivePeerDependencies:
-      - typescript
-
-  kysely-pglite@https://codeload.github.com/jadejr/kysely-pglite/tar.gz/7e1297f733d79fe65bb05d4c54d805d677ec4c57(patch_hash=4d134d071560443a429efba1d0c4448e97127cfc6788581a24510f24e12935c2)(@electric-sql/pglite@0.2.17)(kysely-bun-sqlite@0.3.2(kysely@https://pkg.pr.new/kysely-org/kysely/kysely@2b7007e))(kysely@https://pkg.pr.new/kysely-org/kysely/kysely@2b7007e)(pg@8.13.3)(typescript@5.8.2):
-    dependencies:
-      '@electric-sql/pglite': 0.2.17
-      '@oclif/core': 4.2.10
-      '@repeaterjs/repeater': 3.0.6
-      '@sindresorhus/is': 7.0.1
-      chokidar: 4.0.3
-      consola: 3.4.2
-      fs-extra: 11.3.0
-      jiti: 2.4.2
-      kysely: https://pkg.pr.new/kysely-org/kysely/kysely@2b7007e
-      kysely-codegen: 0.18.3(kysely-bun-sqlite@0.3.2(kysely@https://pkg.pr.new/kysely-org/kysely/kysely@2b7007e))(kysely@https://pkg.pr.new/kysely-org/kysely/kysely@2b7007e)(pg@8.13.3)(typescript@5.8.2)
-      radash: 12.1.0
-      tinyglobby: 0.2.12
-    transitivePeerDependencies:
-      - '@libsql/kysely-libsql'
-      - '@tediousjs/connection-string'
-      - better-sqlite3
-      - kysely-bun-sqlite
-      - kysely-bun-worker
-      - mysql2
-      - pg
-      - tarn
-      - tedious
       - typescript
 
   kysely@https://pkg.pr.new/kysely-org/kysely/kysely@2b7007e: {}
