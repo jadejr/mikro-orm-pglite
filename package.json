@@ -52,7 +52,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/mikro-orm/mikro-orm.git"
+    "url": "https://github.com/jadejr/mikro-orm-pglite"
   },
   "engines": {
     "node": ">= 22.11.0"
