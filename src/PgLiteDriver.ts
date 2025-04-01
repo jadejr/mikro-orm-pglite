@@ -1,5 +1,6 @@
 import type { Configuration } from '@mikro-orm/core';
 import { AbstractSqlDriver } from '@mikro-orm/knex';
+
 import { PgLiteConnection } from './PgLiteConnection.js';
 import { PgLitePlatform } from './PgLitePlatform.js';
 

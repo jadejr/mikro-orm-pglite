@@ -4,14 +4,15 @@ import { PGlite, types } from '@electric-sql/pglite';
 import { citext } from '@electric-sql/pglite/contrib/citext';
 import { vector } from '@electric-sql/pglite/vector';
 import { PGliteDialect, type PGliteDialectConfig } from '@jadejr/kysely-pglite';
-import { AbstractSqlConnection, type ConnectionConfig, Utils } from '@mikro-orm/knex';
+import { AbstractSqlConnection, type ConnectionConfig, Dictionary, Utils } from '@mikro-orm/knex';
+import { type QueryResult } from 'kysely';
 
 type PgLiteConnectionConfig = ConnectionConfig & PGliteDialectConfig;
 
 export class PgLiteConnection extends AbstractSqlConnection {
   protected database!: PGlite;
 
-  override createKyselyDialect(overrides: any) {
+  override createKyselyDialect(overrides: Dictionary) {
     const options = this.mapOptions(overrides);
     // PGlite doesn't need or use host, so remove it
     delete options.host;
@@ -24,7 +25,7 @@ export class PgLiteConnection extends AbstractSqlConnection {
     return dialect;
   }
 
-  mapOptions(overrides: any): PgLiteConnectionConfig {
+  mapOptions(overrides: Dictionary): PgLiteConnectionConfig {
     const ret = { ...this.getConnectionOptions() } as PgLiteConnectionConfig;
 
     // use `select typname, oid, typarray from pg_type order by oid` to get the list of OIDs
@@ -63,18 +64,17 @@ export class PgLiteConnection extends AbstractSqlConnection {
     return Utils.mergeConfig(ret, overrides);
   }
 
-  // @todo maybe not required?
-  override transformRawResult<T>(res: any, method?: 'all' | 'get' | 'run'): T {
+  override transformRawResult<T>(res: QueryResult<T>, method?: 'all' | 'get' | 'run'): T {
     if (method === 'get') {
       return res.rows[0];
     }
 
     if (method === 'all') {
-      return res.rows;
+      return res.rows as T;
     }
 
     return {
-      affectedRows: res.numAffectedRows > 0 ? Number(res.numAffectedRows) : res.rows.length,
+      affectedRows: Number(res.numAffectedRows) > 0 ? Number(res.numAffectedRows) : res.rows.length,
       ...(res.insertId ? { insertId: res.insertId } : {}),
       row: res.rows[0],
       rows: res.rows,
@@ -126,7 +126,6 @@ export class PgLiteConnection extends AbstractSqlConnection {
   override getClientUrl(): string {
     const options = this.getConnectionOptions();
 
-    const url = new URL(this.config.getClientUrl(true));
     const params = new URLSearchParams({
       ...(options.database ? { dbName: options.database } : {}),
       ...(options.schema && options.schema !== this.platform.getDefaultSchemaName() ? { schema: options.schema } : {}),
