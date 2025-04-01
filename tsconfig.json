@@ -18,5 +18,6 @@
     "forceConsistentCasingInFileNames": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src"]
+  "include": ["src", "eslint.config.ts"],
+  "exclude": ["node_modules", "dist"]
 }
