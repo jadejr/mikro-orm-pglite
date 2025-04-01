@@ -1,6 +1,8 @@
 import { type SqlEntityManager, SqlSchemaGenerator } from '@mikro-orm/knex';
 import { type MikroORM, type Transaction, Utils } from '@mikro-orm/core';
 
+import { type PgLiteDriver } from './PgLiteDriver.js';
+
 export class PgLiteSchemaGenerator extends SqlSchemaGenerator {
   static override register(orm: MikroORM): void {
     orm.config.registerExtension(
@@ -59,7 +61,7 @@ export class PgLiteSchemaGenerator extends SqlSchemaGenerator {
     for (const group of groups) {
       const query = group.join('\n');
       // @todo: add to type if we keep the loadQuery concept
-      await (this.driver as any).loadQuery(query);
+      await (this.driver as PgLiteDriver).loadQuery(query);
     }
 
     return;
