@@ -14,8 +14,7 @@ export class PgLiteConnection extends AbstractSqlConnection {
 
   override createKyselyDialect(overrides: Dictionary) {
     const options = this.mapOptions(overrides);
-    // PGlite doesn't need or use host, so remove it
-    delete options.host;
+    // Setup PGlite ourselves rather than letting kysely start it, since we can't get retrieve it from kysely
     this.database = new PGlite(options.PGliteOptions);
     const dialect = new PGliteDialect({
       PGlite: this.database,
