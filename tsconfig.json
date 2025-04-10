@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "NodeNext",
+    "module": "preserve",
     "lib": ["es2023", "dom"],
     "outDir": "dist/",
     "declaration": true,
