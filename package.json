@@ -56,10 +56,5 @@
   },
   "engines": {
     "node": ">= 22.11.0"
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "@jadejr/kysely-pglite": "patches/@jadejr__kysely-pglite.patch"
-    }
   }
 }

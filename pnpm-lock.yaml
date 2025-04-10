@@ -4,11 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-patchedDependencies:
-  '@jadejr/kysely-pglite':
-    hash: 50c4e624c9deb993d05a1d2562e71936bc372fab83e7edd0970a490105777cd3
-    path: patches/@jadejr__kysely-pglite.patch
-
 importers:
 
   .:
@@ -18,7 +13,7 @@ importers:
         version: 0.2.17
       '@jadejr/kysely-pglite':
         specifier: ^1.0.2
-        version: 1.0.2(patch_hash=50c4e624c9deb993d05a1d2562e71936bc372fab83e7edd0970a490105777cd3)(@electric-sql/pglite@0.2.17)(kysely@https://pkg.pr.new/kysely-org/kysely/kysely@2b7007e)(pg@8.13.3)(typescript@5.8.3)
+        version: 1.0.2(@electric-sql/pglite@0.2.17)(kysely@https://pkg.pr.new/kysely-org/kysely/kysely@2b7007e)(pg@8.13.3)(typescript@5.8.3)
       '@mikro-orm/knex':
         specifier: 7.0.0-dev.7
         version: 7.0.0-dev.7(@mikro-orm/core@7.0.0-dev.7)
@@ -1197,7 +1192,7 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.2': {}
 
-  '@jadejr/kysely-pglite@1.0.2(patch_hash=50c4e624c9deb993d05a1d2562e71936bc372fab83e7edd0970a490105777cd3)(@electric-sql/pglite@0.2.17)(kysely@https://pkg.pr.new/kysely-org/kysely/kysely@2b7007e)(pg@8.13.3)(typescript@5.8.3)':
+  '@jadejr/kysely-pglite@1.0.2(@electric-sql/pglite@0.2.17)(kysely@https://pkg.pr.new/kysely-org/kysely/kysely@2b7007e)(pg@8.13.3)(typescript@5.8.3)':
     dependencies:
       '@electric-sql/pglite': 0.2.17
       '@oclif/core': 4.2.10
