@@ -61,7 +61,11 @@ export class PgLiteSchemaGenerator extends SqlSchemaGenerator {
     for (const group of groups) {
       const query = group.join('\n');
       // @todo: add to type if we keep the loadQuery concept
-      await (this.driver as PgLiteDriver).loadQuery(query);
+      if ('loadQuery' in this.driver && typeof (this.driver as unknown as PgLiteDriver).loadQuery === 'function') {
+        await (this.driver as unknown as PgLiteDriver).loadQuery(query);
+      } else {
+        throw new Error('PgLiteDriver with loadQuery method is required');
+      }
     }
 
     return;
