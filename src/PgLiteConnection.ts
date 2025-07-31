@@ -12,10 +12,10 @@ type PgLiteConnectionConfig = ConnectionConfig & PGliteDialectConfig;
 export class PgLiteConnection extends AbstractSqlConnection {
   protected database!: PGlite;
 
-  override createKyselyDialect(overrides: Dictionary) {
+  override async createKyselyDialect(overrides: Dictionary) {
     const options = this.mapOptions(overrides);
 
-    this.database = new PGlite(options.PGliteOptions);
+    this.database = await PGlite.create(options.PGliteOptions);
     const dialect = new PGliteDialect({
       PGlite: this.database,
       ...(options.onCreateConnection ? { onCreateConnection: this.config.get('onCreateConnection') } : {}),
