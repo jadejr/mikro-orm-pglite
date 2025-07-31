@@ -9,7 +9,7 @@
     "postgres"
   ],
   "type": "module",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A mikro-orm driver for pglite",
   "exports": {
     "./package.json": "./package.json",
