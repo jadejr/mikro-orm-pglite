@@ -18,7 +18,7 @@ export class PgLiteConnection extends AbstractSqlConnection {
     this.database = await PGlite.create(options.PGliteOptions);
     const dialect = new PGliteDialect({
       PGlite: this.database,
-      ...(options.onCreateConnection ? { onCreateConnection: this.config.get('onCreateConnection') } : {}),
+      onCreateConnection: this.config.get('onCreateConnection'),
     });
 
     return dialect;
