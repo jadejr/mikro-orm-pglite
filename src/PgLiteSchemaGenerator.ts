@@ -1,4 +1,4 @@
-import { type SqlEntityManager, SqlSchemaGenerator } from '@mikro-orm/knex';
+import { type SqlEntityManager, SqlSchemaGenerator } from '@mikro-orm/sql';
 import { type MikroORM, type Transaction, Utils } from '@mikro-orm/core';
 
 import { type PgLiteDriver } from './PgLiteDriver.js';

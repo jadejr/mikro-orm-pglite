@@ -1,9 +1,8 @@
-export * from '@mikro-orm/knex';
+export * from '@mikro-orm/sql';
 export * from './PgLiteConnection.js';
 export * from './PgLiteDriver.js';
 export * from './PgLitePlatform.js';
 export * from './PgLiteExceptionConverter.js';
-export * from './types/index.js';
 export {
   PgLiteMikroORM as MikroORM,
   PgLiteOptions as Options,

@@ -4,7 +4,7 @@ import { PGlite, types } from '@electric-sql/pglite';
 import { citext } from '@electric-sql/pglite/contrib/citext';
 import { vector } from '@electric-sql/pglite/vector';
 import { PGliteDialect, type PGliteDialectConfig } from '@jadejr/kysely-pglite';
-import { AbstractSqlConnection, type ConnectionConfig, Dictionary, Utils } from '@mikro-orm/knex';
+import { AbstractSqlConnection, type ConnectionConfig, Dictionary, Utils } from '@mikro-orm/sql';
 import { type QueryResult } from 'kysely';
 
 type PgLiteConnectionConfig = ConnectionConfig & PGliteDialectConfig;
@@ -12,10 +12,10 @@ type PgLiteConnectionConfig = ConnectionConfig & PGliteDialectConfig;
 export class PgLiteConnection extends AbstractSqlConnection {
   protected database!: PGlite;
 
-  override async createKyselyDialect(overrides: Dictionary) {
+  override createKyselyDialect(overrides: Dictionary) {
     const options = this.mapOptions(overrides);
 
-    this.database = await PGlite.create(options.PGliteOptions);
+    this.database = new PGlite(options.PGliteOptions);
     const dialect = new PGliteDialect({
       PGlite: this.database,
       onCreateConnection: this.config.get('onCreateConnection'),

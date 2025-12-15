@@ -1,45 +1,69 @@
 import {
   defineConfig,
   MikroORM,
-  type Options,
+  type AnyEntity,
   type IDatabaseDriver,
+  type Options,
+  type EntityClass,
   type EntityManager,
   type EntityManagerType,
+  type EntitySchema,
 } from '@mikro-orm/core';
-import type { SqlEntityManager } from '@mikro-orm/knex';
+import type { SqlEntityManager } from '@mikro-orm/sql';
 
 import { PgLiteDriver } from './PgLiteDriver.js';
+
+export type PgLiteOptions<
+  EM extends SqlEntityManager<PgLiteDriver> = SqlEntityManager<PgLiteDriver>,
+  Entities extends (string | EntityClass<AnyEntity> | EntitySchema)[] = (
+    | string
+    | EntityClass<AnyEntity>
+    | EntitySchema
+  )[],
+> = Options<PgLiteDriver, EM, Entities>;
+
+export function definePgLiteConfig<
+  EM extends SqlEntityManager<PgLiteDriver> = SqlEntityManager<PgLiteDriver>,
+  Entities extends (string | EntityClass<AnyEntity> | EntitySchema)[] = (
+    | string
+    | EntityClass<AnyEntity>
+    | EntitySchema
+  )[],
+>(options: Options<PgLiteDriver, EM, Entities>) {
+  return defineConfig({ driver: PgLiteDriver, ...options });
+}
 
 /**
  * @inheritDoc
  */
-export class PgLiteMikroORM<EM extends EntityManager = SqlEntityManager> extends MikroORM<PgLiteDriver, EM> {
-  private static DRIVER = PgLiteDriver;
-
+export class PgLiteMikroORM<
+  EM extends SqlEntityManager<PgLiteDriver> = SqlEntityManager<PgLiteDriver>,
+  Entities extends (string | EntityClass<AnyEntity> | EntitySchema)[] = (
+    | string
+    | EntityClass<AnyEntity>
+    | EntitySchema
+  )[],
+> extends MikroORM<PgLiteDriver, EM, Entities> {
   /**
    * @inheritDoc
    */
   static override async init<
     D extends IDatabaseDriver = PgLiteDriver,
-    EM extends EntityManager = D[typeof EntityManagerType] & EntityManager,
-  >(options?: Options<D, EM>): Promise<MikroORM<D, EM>> {
-    return super.init(options);
+    EM extends EntityManager<D> = D[typeof EntityManagerType] & EntityManager<D>,
+    Entities extends (string | EntityClass<AnyEntity> | EntitySchema)[] = (
+      | string
+      | EntityClass<AnyEntity>
+      | EntitySchema
+    )[],
+  >(options: Options<D, EM, Entities>): Promise<MikroORM<D, EM, Entities>> {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    return super.init(definePgLiteConfig(options as any) as any);
   }
 
   /**
    * @inheritDoc
    */
-  static override initSync<
-    D extends IDatabaseDriver = PgLiteDriver,
-    EM extends EntityManager = D[typeof EntityManagerType] & EntityManager,
-  >(options: Options<D, EM>): MikroORM<D, EM> {
-    return super.initSync(options);
+  constructor(options: Options<PgLiteDriver, EM, Entities>) {
+    super(definePgLiteConfig(options));
   }
-}
-
-export type PgLiteOptions = Options<PgLiteDriver>;
-
-/* v8 ignore next 3 */
-export function definePgLiteConfig(options: PgLiteOptions) {
-  return defineConfig({ driver: PgLiteDriver, ...options });
 }
