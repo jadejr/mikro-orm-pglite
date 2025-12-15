@@ -4,10 +4,8 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-patchedDependencies:
-  '@jadejr/kysely-pglite':
-    hash: 50c4e624c9deb993d05a1d2562e71936bc372fab83e7edd0970a490105777cd3
-    path: patches/@jadejr__kysely-pglite.patch
+overrides:
+  kysely: 0.28.8
 
 importers:
 
@@ -18,44 +16,44 @@ importers:
         version: 0.3.14
       '@jadejr/kysely-pglite':
         specifier: ^1.0.4
-        version: 1.0.4(patch_hash=50c4e624c9deb993d05a1d2562e71936bc372fab83e7edd0970a490105777cd3)(@electric-sql/pglite@0.3.14)(kysely@0.28.2)(pg@8.15.6)(typescript@5.9.3)
-      '@mikro-orm/knex':
-        specifier: 7.0.0-dev.22
-        version: 7.0.0-dev.22(@mikro-orm/core@7.0.0-dev.22)
+        version: 1.0.4(@electric-sql/pglite@0.3.14)(kysely@0.28.8)(pg@8.16.3)(typescript@5.9.3)
       '@mikro-orm/postgresql':
-        specifier: 7.0.0-dev.22
-        version: 7.0.0-dev.22(@mikro-orm/core@7.0.0-dev.22)(kysely@0.28.2)
+        specifier: 7.0.0-dev.105
+        version: 7.0.0-dev.105(@mikro-orm/core@7.0.0-dev.105(dataloader@2.2.3))
+      '@mikro-orm/sql':
+        specifier: 7.0.0-dev.105
+        version: 7.0.0-dev.105(@mikro-orm/core@7.0.0-dev.105(dataloader@2.2.3))
     devDependencies:
       '@eslint/js':
-        specifier: ^9.39.1
-        version: 9.39.1
+        specifier: ^9.39.2
+        version: 9.39.2
       '@mikro-orm/core':
-        specifier: 7.0.0-dev.22
-        version: 7.0.0-dev.22
+        specifier: 7.0.0-dev.105
+        version: 7.0.0-dev.105(dataloader@2.2.3)
       '@types/emscripten':
         specifier: ^1.41.5
         version: 1.41.5
       '@types/node':
-        specifier: ^22.19.2
-        version: 22.19.2
+        specifier: ^24.10.4
+        version: 24.10.4
       '@types/pg':
         specifier: ^8.16.0
         version: 8.16.0
       '@typescript-eslint/eslint-plugin':
         specifier: ^8.49.0
-        version: 8.49.0(@typescript-eslint/parser@8.49.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)
+        version: 8.49.0(@typescript-eslint/parser@8.49.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
       eslint:
-        specifier: ^9.39.1
-        version: 9.39.1(jiti@2.6.1)
+        specifier: ^9.39.2
+        version: 9.39.2(jiti@2.6.1)
       eslint-config-prettier:
         specifier: ^10.1.8
-        version: 10.1.8(eslint@9.39.1(jiti@2.6.1))
+        version: 10.1.8(eslint@9.39.2(jiti@2.6.1))
       eslint-plugin-prettier:
         specifier: ^5.5.4
-        version: 5.5.4(eslint-config-prettier@10.1.8(eslint@9.39.1(jiti@2.6.1)))(eslint@9.39.1(jiti@2.6.1))(prettier@3.7.4)
+        version: 5.5.4(eslint-config-prettier@10.1.8(eslint@9.39.2(jiti@2.6.1)))(eslint@9.39.2(jiti@2.6.1))(prettier@3.7.4)
       kysely:
-        specifier: 0.28.2
-        version: 0.28.2
+        specifier: 0.28.8
+        version: 0.28.8
       prettier:
         specifier: ^3.7.4
         version: 3.7.4
@@ -64,7 +62,7 @@ importers:
         version: 5.9.3
       typescript-eslint:
         specifier: ^8.49.0
-        version: 8.49.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)
+        version: 8.49.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
 
 packages:
 
@@ -105,8 +103,8 @@ packages:
     resolution: {integrity: sha512-Kr+LPIUVKz2qkx1HAMH8q1q6azbqBAsXJUxBl/ODDuVPX45Z9DfwB8tPjTi6nNZ8BuM3nbJxC5zCAg5elnBUTQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@eslint/js@9.39.1':
-    resolution: {integrity: sha512-S26Stp4zCy88tH94QbBv3XCuzRQiZ9yXofEILmglYTh/Ug/a9/umqvgFtYBAo3Lp0nsI/5/qH1CCrbdK3AP1Tw==}
+  '@eslint/js@9.39.2':
+    resolution: {integrity: sha512-q1mjIoW1VX4IvSocvM/vbTiveKC4k9eLrajNEuSsmjymSDEbpGddtpfOoN7YGAqBK3NG+uqo8ia4PDTt8buCYA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@eslint/object-schema@2.1.7':
@@ -138,24 +136,28 @@ packages:
     hasBin: true
     peerDependencies:
       '@electric-sql/pglite': '*'
-      kysely: ^0.28
+      kysely: 0.28.8
 
-  '@mikro-orm/core@7.0.0-dev.22':
-    resolution: {integrity: sha512-BzGyN9mWlhFrXb5fN927Xz1oyYBuoAvNAOmQekIRtc1wo7iUOSOYZsItCvTiY6aNWpluwbixg70IF5UmJRIR6Q==}
-    engines: {node: '>= 22.11.0'}
-
-  '@mikro-orm/knex@7.0.0-dev.22':
-    resolution: {integrity: sha512-+60ZkSG2vBDjZnJoE9lkDet+NsthuE1dAFg1K8zb+VFl9M3Xx/+gsW/zEbc68F4xQR2zdYX2az/GPp5Ctw4M5w==}
-    engines: {node: '>= 22.11.0'}
+  '@mikro-orm/core@7.0.0-dev.105':
+    resolution: {integrity: sha512-LmBWoS6fZw5XVpkOpzfz22WNDZicGRAyoFBlhgAcV6IiBAhnM7xlla4xGZVqhPzTWGG9yD7X97HPOWUvbSO2nQ==}
+    engines: {node: '>= 22.17.0'}
     peerDependencies:
-      '@mikro-orm/core': 7.0.0-dev.22
+      dataloader: 2.2.3
+    peerDependenciesMeta:
+      dataloader:
+        optional: true
 
-  '@mikro-orm/postgresql@7.0.0-dev.22':
-    resolution: {integrity: sha512-uLFqduVyj8YJQa+i7ZeA6VUm8XZps9AzNW8ejrz57P3Ns7Ex+NKo4AxJR58ItV6sN+sFtiui0cUIx1gnhgqOcg==}
-    engines: {node: '>= 22.11.0'}
+  '@mikro-orm/postgresql@7.0.0-dev.105':
+    resolution: {integrity: sha512-rpsXPt/TfPyln3tbAbewqRlrpkDvFJ7QGqCBjcArc2i8ZyT7M6eAkYvelB2XbY+6BpQLgU/fik+KcT9h821LFA==}
+    engines: {node: '>= 22.17.0'}
     peerDependencies:
-      '@mikro-orm/core': 7.0.0-dev.22
-      kysely: '*'
+      '@mikro-orm/core': 7.0.0-dev.105
+
+  '@mikro-orm/sql@7.0.0-dev.105':
+    resolution: {integrity: sha512-Ou79I1JR4713Tq/Yk1LBMvDQs2AUWBtRcFkBnXNTlRkxvt/AYQcV5USDK8ApeLoWGw+1eIouD6Nr/NYse2LLaQ==}
+    engines: {node: '>= 22.17.0'}
+    peerDependencies:
+      '@mikro-orm/core': 7.0.0-dev.105
 
   '@oclif/core@4.8.0':
     resolution: {integrity: sha512-jteNUQKgJHLHFbbz806aGZqf+RJJ7t4gwF4MYa8fCwCxQ8/klJNWc0MvaJiBebk7Mc+J39mdlsB4XraaCKznFw==}
@@ -181,8 +183,8 @@ packages:
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
-  '@types/node@22.19.2':
-    resolution: {integrity: sha512-LPM2G3Syo1GLzXLGJAKdqoU35XvrWzGJ21/7sgZTUpbkBaOasTj8tjwn6w+hCkqaa1TfJ/w67rJSwYItlJ2mYw==}
+  '@types/node@24.10.4':
+    resolution: {integrity: sha512-vnDVpYPMzs4wunl27jHrfmwojOGKya0xyM3sH+UE5iv5uPS6vX7UIoh6m+vQc5LGBq52HBKPIn/zcSZVzeDEZg==}
 
   '@types/pg@8.16.0':
     resolution: {integrity: sha512-RmhMd/wD+CF8Dfo+cVIy3RR5cl8CyfXQ0tGgW6XBL8L4LM/UTEbNXYRbLwU6w+CgrKBNbrQWt4FUtTfaU5jSYQ==}
@@ -378,10 +380,6 @@ packages:
     resolution: {integrity: sha512-uc47g4b+4k/M/SeaW1y4OApx+mtLWl92l5LMPP0GNXctZqELk+YGgOPIIC5elYmUH4OuoK3JLhuRUYegeySiFA==}
     engines: {node: '>=12'}
 
-  dotenv@16.5.0:
-    resolution: {integrity: sha512-m/C+AwOAr9/W1UOIZUo232ejMNnJAJtYQjUbHoNTBNTJSvqzzDh7vnrei3o3r3m9blf6ZoDkvcw0VmozNRFJxg==}
-    engines: {node: '>=12'}
-
   dotenv@16.6.1:
     resolution: {integrity: sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==}
     engines: {node: '>=12'}
@@ -441,8 +439,8 @@ packages:
     resolution: {integrity: sha512-Uhdk5sfqcee/9H/rCOJikYz67o0a2Tw2hGRPOG2Y1R2dg7brRe1uG0yaNQDHu+TO/uQPF/5eCapvYSmHUjt7JQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  eslint@9.39.1:
-    resolution: {integrity: sha512-BhHmn2yNOFA9H9JmmIVKJmd288g9hrVRDkdoIgRCRuSySRUHH7r/DI6aAXW9T1WwUuY3DFgrcaqB+deURBLR5g==}
+  eslint@9.39.2:
+    resolution: {integrity: sha512-LEyamqS7W5HB3ujJyvi0HQK/dtVINZvd5mAAp9eT5S/ujByGjiZLCzPcHVzuXbpJDJF/cxwHlfceVUDZ2lnSTw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     hasBin: true
     peerDependencies:
@@ -454,11 +452,6 @@ packages:
   espree@10.4.0:
     resolution: {integrity: sha512-j6PAQ2uUr79PZhBjP5C5fhl8e39FmRnOjsD5lGnWrFU8i2G776tBK7+nP8KuQUTTyAZUwfQqXAgrVH5MbH9CYQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  esprima@4.0.1:
-    resolution: {integrity: sha512-eGuFFw7Upda+g4p+QHvnW0RyTX/SVeJBDM/gCtMARO0cLuT2HcEKnTPvhjV6aGeqrCB/sbNop0Kszm0jsaWU4A==}
-    engines: {node: '>=4'}
-    hasBin: true
 
   esquery@1.6.0:
     resolution: {integrity: sha512-ca9pw9fomFcKPvFLXhBKUK90ZvGibiGOvRJNbjljY7s7uq/5YO4BOzcYtJqExdx99rF6aAcnRxHmcUHcz6sQsg==}
@@ -672,7 +665,7 @@ packages:
       '@libsql/kysely-libsql': '>=0.3.0 <0.5.0'
       '@tediousjs/connection-string': '>=0.5.0 <0.6.0'
       better-sqlite3: '>=7.6.2 <8.0.0'
-      kysely: '>=0.27.0 <1.0.0'
+      kysely: 0.28.8
       kysely-bun-sqlite: '>=0.3.2 <1.0.0'
       kysely-bun-worker: '>=1.2.0 <2.0.0'
       mysql2: '>=2.3.3 <4.0.0'
@@ -699,9 +692,9 @@ packages:
       tedious:
         optional: true
 
-  kysely@0.28.2:
-    resolution: {integrity: sha512-4YAVLoF0Sf0UTqlhgQMFU9iQECdah7n+13ANkiuVfRvlK+uI0Etbgd7bVP36dKlG+NXWbhGua8vnGt+sdhvT7A==}
-    engines: {node: '>=18.0.0'}
+  kysely@0.28.8:
+    resolution: {integrity: sha512-QUOgl5ZrS9IRuhq5FvOKFSsD/3+IA6MLE81/bOOTRA/YQpKDza2sFdN5g6JCB9BOpqMJDGefLCQ9F12hRS13TA==}
+    engines: {node: '>=20.0.0'}
 
   levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
@@ -728,10 +721,6 @@ packages:
   micromatch@4.0.8:
     resolution: {integrity: sha512-PXwfBhYu0hBCPw8Dn0E+WDYb7af3dSLVWKi3HGv84IdF4TyFoC0ysxFd0Goxw7nSv4T/PzEJQxsYsEiFCKo2BA==}
     engines: {node: '>=8.6'}
-
-  mikro-orm@7.0.0-dev.22:
-    resolution: {integrity: sha512-JytLGoasnzdSRy0KFuoablGukQh7FHg8xp3MpiPENjbuJvJtoMqS3oE1R21A5lGadiWQpTMPAnXag4tcieBGPQ==}
-    engines: {node: '>= 22.11.0'}
 
   minimatch@3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
@@ -797,6 +786,11 @@ packages:
   pg-connection-string@2.9.1:
     resolution: {integrity: sha512-nkc6NpDcvPVpZXxrreI/FOtX3XemeLl8E0qFr6F2Lrm/I8WOnaWNhIPK2Z7OHpw7gh5XJThi6j6ppgNoaT1w4w==}
 
+  pg-cursor@2.15.3:
+    resolution: {integrity: sha512-eHw63TsiGtFEfAd7tOTZ+TLy+i/2ePKS20H84qCQ+aQ60pve05Okon9tKMC+YN3j6XyeFoHnaim7Lt9WVafQsA==}
+    peerDependencies:
+      pg: ^8
+
   pg-int8@1.0.1:
     resolution: {integrity: sha512-WCtabS6t3c8SkpDBUlb1kjOs7l66xsGdKpIPZsg4wR+B3+u9UAum2odSsF9tnvxg80h4ZxLWMy4pRjOsFIqQpw==}
     engines: {node: '>=4.0.0'}
@@ -813,9 +807,9 @@ packages:
     resolution: {integrity: sha512-qTAAlrEsl8s4OiEQY69wDvcMIdQN6wdz5ojQiOy6YRMuynxenON0O5oCpJI6lshc6scgAY8qvJ2On/p+CXY0GA==}
     engines: {node: '>=4'}
 
-  pg@8.15.6:
-    resolution: {integrity: sha512-yvao7YI3GdmmrslNVsZgx9PfntfWrnXwtR+K/DjI0I/sTKif4Z623um+sjVZ1hk5670B+ODjvHDAckKdjmPTsg==}
-    engines: {node: '>= 8.0.0'}
+  pg@8.16.3:
+    resolution: {integrity: sha512-enxc1h0jA/aq5oSDMvqyW3q89ra6XIIDZgCX9vkMrnz5DFTw/Ny3Li2lFQ+pt3L6MCgm/5o2o8HW9hiJji+xvw==}
+    engines: {node: '>= 16.0.0'}
     peerDependencies:
       pg-native: '>=3.0.1'
     peerDependenciesMeta:
@@ -897,9 +891,6 @@ packages:
     resolution: {integrity: sha512-HFM8rkZ+i3zrV+4LQjwQ0W+ez98pApMGM3HUrN04j3CqzPOzl9nmP15Y8YXNm8QHGv/eacOVEjqhmWpkRV0NAw==}
     engines: {node: '>= 0.10'}
 
-  reflect-metadata@0.2.2:
-    resolution: {integrity: sha512-urBwgfrvVP/eAyXx4hluJivBKzuEbSQs9rKWCrCkbSxNv8mxPcUZKeuoF3Uy4mJl3Lwprp6yy5/39VWigZ4K6Q==}
-
   resolve-from@4.0.0:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==}
     engines: {node: '>=4'}
@@ -935,10 +926,6 @@ packages:
     resolution: {integrity: sha512-UcjcJOWknrNkF6PLX83qcHM6KHgVKNkV62Y8a5uYDVv9ydGQVwAHMKqHdJje1VTWpljG0WYpCDhrCdAOYH4TWg==}
     engines: {node: '>= 10.x'}
 
-  sqlstring@2.3.3:
-    resolution: {integrity: sha512-qC9iz2FlN7DQl3+wjwn3802RTyjCx7sDvfQEXchwa6CWOx07/WVfh91gBmQ9fahw8snwGEWU3xGzOt4tFyHLxg==}
-    engines: {node: '>= 0.6'}
-
   string-width@4.2.3:
     resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}
     engines: {node: '>=8'}
@@ -970,10 +957,6 @@ packages:
   synckit@0.11.11:
     resolution: {integrity: sha512-MeQTA1r0litLUf0Rp/iisCaL8761lKAZHaimlbGK4j0HysC4PLfqygQj9srcs0m2RdtDYnF8UuYyKpbjHYp7Jw==}
     engines: {node: ^14.18.0 || >=16.0.0}
-
-  tinyglobby@0.2.13:
-    resolution: {integrity: sha512-mEwzpUgrLySlveBwEVDMKk5B57bhLPYovRfPAXD5gA/98Opn0rCDj3GtLwFvCvH5RK9uPCExUROW5NjDwvqkxw==}
-    engines: {node: '>=12.0.0'}
 
   tinyglobby@0.2.15:
     resolution: {integrity: sha512-j2Zq4NyQYG5XMST4cbs02Ak8iJUdxRM0XI5QyxXuZOzKOINmWurp3smXu3y5wDcJrptwpSjgXHzIQxR0omXljQ==}
@@ -1009,8 +992,8 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  undici-types@6.21.0:
-    resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
+  undici-types@7.16.0:
+    resolution: {integrity: sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw==}
 
   universalify@2.0.1:
     resolution: {integrity: sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==}
@@ -1065,9 +1048,9 @@ snapshots:
 
   '@electric-sql/pglite@0.3.14': {}
 
-  '@eslint-community/eslint-utils@4.9.0(eslint@9.39.1(jiti@2.6.1))':
+  '@eslint-community/eslint-utils@4.9.0(eslint@9.39.2(jiti@2.6.1))':
     dependencies:
-      eslint: 9.39.1(jiti@2.6.1)
+      eslint: 9.39.2(jiti@2.6.1)
       eslint-visitor-keys: 3.4.3
 
   '@eslint-community/regexpp@4.12.2': {}
@@ -1102,7 +1085,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@eslint/js@9.39.1': {}
+  '@eslint/js@9.39.2': {}
 
   '@eslint/object-schema@2.1.7': {}
 
@@ -1122,7 +1105,7 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.3': {}
 
-  '@jadejr/kysely-pglite@1.0.4(patch_hash=50c4e624c9deb993d05a1d2562e71936bc372fab83e7edd0970a490105777cd3)(@electric-sql/pglite@0.3.14)(kysely@0.28.2)(pg@8.15.6)(typescript@5.9.3)':
+  '@jadejr/kysely-pglite@1.0.4(@electric-sql/pglite@0.3.14)(kysely@0.28.8)(pg@8.16.3)(typescript@5.9.3)':
     dependencies:
       '@electric-sql/pglite': 0.3.14
       '@oclif/core': 4.8.0
@@ -1132,8 +1115,8 @@ snapshots:
       consola: 3.4.2
       fs-extra: 11.3.2
       jiti: 2.6.1
-      kysely: 0.28.2
-      kysely-codegen: 0.18.5(kysely@0.28.2)(pg@8.15.6)(typescript@5.9.3)
+      kysely: 0.28.8
+      kysely-codegen: 0.18.5(kysely@0.28.8)(pg@8.16.3)(typescript@5.9.3)
       radash: 12.1.1
       tinyglobby: 0.2.15
     transitivePeerDependencies:
@@ -1148,32 +1131,27 @@ snapshots:
       - tedious
       - typescript
 
-  '@mikro-orm/core@7.0.0-dev.22':
-    dependencies:
+  '@mikro-orm/core@7.0.0-dev.105(dataloader@2.2.3)':
+    optionalDependencies:
       dataloader: 2.2.3
-      dotenv: 16.5.0
-      esprima: 4.0.1
-      mikro-orm: 7.0.0-dev.22
-      reflect-metadata: 0.2.2
-      tinyglobby: 0.2.13
 
-  '@mikro-orm/knex@7.0.0-dev.22(@mikro-orm/core@7.0.0-dev.22)':
+  '@mikro-orm/postgresql@7.0.0-dev.105(@mikro-orm/core@7.0.0-dev.105(dataloader@2.2.3))':
     dependencies:
-      '@mikro-orm/core': 7.0.0-dev.22
-      kysely: 0.28.2
-      sqlstring: 2.3.3
-
-  '@mikro-orm/postgresql@7.0.0-dev.22(@mikro-orm/core@7.0.0-dev.22)(kysely@0.28.2)':
-    dependencies:
-      '@mikro-orm/core': 7.0.0-dev.22
-      '@mikro-orm/knex': 7.0.0-dev.22(@mikro-orm/core@7.0.0-dev.22)
-      kysely: 0.28.2
-      pg: 8.15.6
+      '@mikro-orm/core': 7.0.0-dev.105(dataloader@2.2.3)
+      '@mikro-orm/sql': 7.0.0-dev.105(@mikro-orm/core@7.0.0-dev.105(dataloader@2.2.3))
+      kysely: 0.28.8
+      pg: 8.16.3
+      pg-cursor: 2.15.3(pg@8.16.3)
       postgres-array: 3.0.4
       postgres-date: 2.1.0
       postgres-interval: 4.0.2
     transitivePeerDependencies:
       - pg-native
+
+  '@mikro-orm/sql@7.0.0-dev.105(@mikro-orm/core@7.0.0-dev.105(dataloader@2.2.3))':
+    dependencies:
+      '@mikro-orm/core': 7.0.0-dev.105(dataloader@2.2.3)
+      kysely: 0.28.8
 
   '@oclif/core@4.8.0':
     dependencies:
@@ -1208,25 +1186,25 @@ snapshots:
 
   '@types/json-schema@7.0.15': {}
 
-  '@types/node@22.19.2':
+  '@types/node@24.10.4':
     dependencies:
-      undici-types: 6.21.0
+      undici-types: 7.16.0
 
   '@types/pg@8.16.0':
     dependencies:
-      '@types/node': 22.19.2
+      '@types/node': 24.10.4
       pg-protocol: 1.10.3
       pg-types: 2.2.0
 
-  '@typescript-eslint/eslint-plugin@8.49.0(@typescript-eslint/parser@8.49.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)':
+  '@typescript-eslint/eslint-plugin@8.49.0(@typescript-eslint/parser@8.49.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)':
     dependencies:
       '@eslint-community/regexpp': 4.12.2
-      '@typescript-eslint/parser': 8.49.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)
+      '@typescript-eslint/parser': 8.49.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
       '@typescript-eslint/scope-manager': 8.49.0
-      '@typescript-eslint/type-utils': 8.49.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)
-      '@typescript-eslint/utils': 8.49.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)
+      '@typescript-eslint/type-utils': 8.49.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
+      '@typescript-eslint/utils': 8.49.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
       '@typescript-eslint/visitor-keys': 8.49.0
-      eslint: 9.39.1(jiti@2.6.1)
+      eslint: 9.39.2(jiti@2.6.1)
       ignore: 7.0.5
       natural-compare: 1.4.0
       ts-api-utils: 2.1.0(typescript@5.9.3)
@@ -1234,14 +1212,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/parser@8.49.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)':
+  '@typescript-eslint/parser@8.49.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)':
     dependencies:
       '@typescript-eslint/scope-manager': 8.49.0
       '@typescript-eslint/types': 8.49.0
       '@typescript-eslint/typescript-estree': 8.49.0(typescript@5.9.3)
       '@typescript-eslint/visitor-keys': 8.49.0
       debug: 4.4.3(supports-color@8.1.1)
-      eslint: 9.39.1(jiti@2.6.1)
+      eslint: 9.39.2(jiti@2.6.1)
       typescript: 5.9.3
     transitivePeerDependencies:
       - supports-color
@@ -1264,13 +1242,13 @@ snapshots:
     dependencies:
       typescript: 5.9.3
 
-  '@typescript-eslint/type-utils@8.49.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)':
+  '@typescript-eslint/type-utils@8.49.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)':
     dependencies:
       '@typescript-eslint/types': 8.49.0
       '@typescript-eslint/typescript-estree': 8.49.0(typescript@5.9.3)
-      '@typescript-eslint/utils': 8.49.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)
+      '@typescript-eslint/utils': 8.49.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
       debug: 4.4.3(supports-color@8.1.1)
-      eslint: 9.39.1(jiti@2.6.1)
+      eslint: 9.39.2(jiti@2.6.1)
       ts-api-utils: 2.1.0(typescript@5.9.3)
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -1293,13 +1271,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/utils@8.49.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)':
+  '@typescript-eslint/utils@8.49.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)':
     dependencies:
-      '@eslint-community/eslint-utils': 4.9.0(eslint@9.39.1(jiti@2.6.1))
+      '@eslint-community/eslint-utils': 4.9.0(eslint@9.39.2(jiti@2.6.1))
       '@typescript-eslint/scope-manager': 8.49.0
       '@typescript-eslint/types': 8.49.0
       '@typescript-eslint/typescript-estree': 8.49.0(typescript@5.9.3)
-      eslint: 9.39.1(jiti@2.6.1)
+      eslint: 9.39.2(jiti@2.6.1)
       typescript: 5.9.3
     transitivePeerDependencies:
       - supports-color
@@ -1411,7 +1389,8 @@ snapshots:
       shebang-command: 2.0.0
       which: 2.0.2
 
-  dataloader@2.2.3: {}
+  dataloader@2.2.3:
+    optional: true
 
   debug@4.4.3(supports-color@8.1.1):
     dependencies:
@@ -1426,8 +1405,6 @@ snapshots:
   dotenv-expand@12.0.3:
     dependencies:
       dotenv: 16.6.1
-
-  dotenv@16.5.0: {}
 
   dotenv@16.6.1: {}
 
@@ -1447,18 +1424,18 @@ snapshots:
 
   escape-string-regexp@4.0.0: {}
 
-  eslint-config-prettier@10.1.8(eslint@9.39.1(jiti@2.6.1)):
+  eslint-config-prettier@10.1.8(eslint@9.39.2(jiti@2.6.1)):
     dependencies:
-      eslint: 9.39.1(jiti@2.6.1)
+      eslint: 9.39.2(jiti@2.6.1)
 
-  eslint-plugin-prettier@5.5.4(eslint-config-prettier@10.1.8(eslint@9.39.1(jiti@2.6.1)))(eslint@9.39.1(jiti@2.6.1))(prettier@3.7.4):
+  eslint-plugin-prettier@5.5.4(eslint-config-prettier@10.1.8(eslint@9.39.2(jiti@2.6.1)))(eslint@9.39.2(jiti@2.6.1))(prettier@3.7.4):
     dependencies:
-      eslint: 9.39.1(jiti@2.6.1)
+      eslint: 9.39.2(jiti@2.6.1)
       prettier: 3.7.4
       prettier-linter-helpers: 1.0.0
       synckit: 0.11.11
     optionalDependencies:
-      eslint-config-prettier: 10.1.8(eslint@9.39.1(jiti@2.6.1))
+      eslint-config-prettier: 10.1.8(eslint@9.39.2(jiti@2.6.1))
 
   eslint-scope@8.4.0:
     dependencies:
@@ -1469,15 +1446,15 @@ snapshots:
 
   eslint-visitor-keys@4.2.1: {}
 
-  eslint@9.39.1(jiti@2.6.1):
+  eslint@9.39.2(jiti@2.6.1):
     dependencies:
-      '@eslint-community/eslint-utils': 4.9.0(eslint@9.39.1(jiti@2.6.1))
+      '@eslint-community/eslint-utils': 4.9.0(eslint@9.39.2(jiti@2.6.1))
       '@eslint-community/regexpp': 4.12.2
       '@eslint/config-array': 0.21.1
       '@eslint/config-helpers': 0.4.2
       '@eslint/core': 0.17.0
       '@eslint/eslintrc': 3.3.3
-      '@eslint/js': 9.39.1
+      '@eslint/js': 9.39.2
       '@eslint/plugin-kit': 0.4.1
       '@humanfs/node': 0.16.7
       '@humanwhocodes/module-importer': 1.0.1
@@ -1515,8 +1492,6 @@ snapshots:
       acorn: 8.15.0
       acorn-jsx: 5.3.2(acorn@8.15.0)
       eslint-visitor-keys: 4.2.1
-
-  esprima@4.0.1: {}
 
   esquery@1.6.0:
     dependencies:
@@ -1689,24 +1664,24 @@ snapshots:
     dependencies:
       json-buffer: 3.0.1
 
-  kysely-codegen@0.18.5(kysely@0.28.2)(pg@8.15.6)(typescript@5.9.3):
+  kysely-codegen@0.18.5(kysely@0.28.8)(pg@8.16.3)(typescript@5.9.3):
     dependencies:
       chalk: 4.1.2
       cosmiconfig: 9.0.0(typescript@5.9.3)
       dotenv: 16.6.1
       dotenv-expand: 12.0.3
       git-diff: 2.0.6
-      kysely: 0.28.2
+      kysely: 0.28.8
       micromatch: 4.0.8
       minimist: 1.2.8
       pluralize: 8.0.0
       zod: 3.25.76
     optionalDependencies:
-      pg: 8.15.6
+      pg: 8.16.3
     transitivePeerDependencies:
       - typescript
 
-  kysely@0.28.2: {}
+  kysely@0.28.8: {}
 
   levn@0.4.1:
     dependencies:
@@ -1729,8 +1704,6 @@ snapshots:
     dependencies:
       braces: 3.0.3
       picomatch: 2.3.1
-
-  mikro-orm@7.0.0-dev.22: {}
 
   minimatch@3.1.2:
     dependencies:
@@ -1795,11 +1768,15 @@ snapshots:
 
   pg-connection-string@2.9.1: {}
 
+  pg-cursor@2.15.3(pg@8.16.3):
+    dependencies:
+      pg: 8.16.3
+
   pg-int8@1.0.1: {}
 
-  pg-pool@3.10.1(pg@8.15.6):
+  pg-pool@3.10.1(pg@8.16.3):
     dependencies:
-      pg: 8.15.6
+      pg: 8.16.3
 
   pg-protocol@1.10.3: {}
 
@@ -1811,10 +1788,10 @@ snapshots:
       postgres-date: 1.0.7
       postgres-interval: 1.2.0
 
-  pg@8.15.6:
+  pg@8.16.3:
     dependencies:
       pg-connection-string: 2.9.1
-      pg-pool: 3.10.1(pg@8.15.6)
+      pg-pool: 3.10.1(pg@8.16.3)
       pg-protocol: 1.10.3
       pg-types: 2.2.0
       pgpass: 1.0.5
@@ -1867,8 +1844,6 @@ snapshots:
     dependencies:
       resolve: 1.22.11
 
-  reflect-metadata@0.2.2: {}
-
   resolve-from@4.0.0: {}
 
   resolve@1.22.11:
@@ -1894,8 +1869,6 @@ snapshots:
       rechoir: 0.6.2
 
   split2@4.2.0: {}
-
-  sqlstring@2.3.3: {}
 
   string-width@4.2.3:
     dependencies:
@@ -1927,11 +1900,6 @@ snapshots:
     dependencies:
       '@pkgr/core': 0.2.9
 
-  tinyglobby@0.2.13:
-    dependencies:
-      fdir: 6.5.0(picomatch@4.0.3)
-      picomatch: 4.0.3
-
   tinyglobby@0.2.15:
     dependencies:
       fdir: 6.5.0(picomatch@4.0.3)
@@ -1951,20 +1919,20 @@ snapshots:
 
   type-fest@0.21.3: {}
 
-  typescript-eslint@8.49.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3):
+  typescript-eslint@8.49.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3):
     dependencies:
-      '@typescript-eslint/eslint-plugin': 8.49.0(@typescript-eslint/parser@8.49.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)
-      '@typescript-eslint/parser': 8.49.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)
+      '@typescript-eslint/eslint-plugin': 8.49.0(@typescript-eslint/parser@8.49.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
+      '@typescript-eslint/parser': 8.49.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
       '@typescript-eslint/typescript-estree': 8.49.0(typescript@5.9.3)
-      '@typescript-eslint/utils': 8.49.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)
-      eslint: 9.39.1(jiti@2.6.1)
+      '@typescript-eslint/utils': 8.49.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
+      eslint: 9.39.2(jiti@2.6.1)
       typescript: 5.9.3
     transitivePeerDependencies:
       - supports-color
 
   typescript@5.9.3: {}
 
-  undici-types@6.21.0: {}
+  undici-types@7.16.0: {}
 
   universalify@2.0.1: {}
 
