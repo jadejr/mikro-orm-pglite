@@ -3,10 +3,11 @@ import { readFile } from 'node:fs/promises';
 import { PGlite, types } from '@electric-sql/pglite';
 import { citext } from '@electric-sql/pglite/contrib/citext';
 import { vector } from '@electric-sql/pglite/vector';
-import { PGliteDialect, type PGliteDialectConfig } from '@jadejr/kysely-pglite';
 import { AbstractSqlConnection, type ConnectionConfig, Dictionary, Utils } from '@mikro-orm/sql';
 import { type QueryResult } from 'kysely';
 
+import { PGliteDialect } from './kysely/pglite-dialect';
+import { type PGliteDialectConfig } from './kysely/pglite-dialect-config.js';
 type PgLiteConnectionConfig = ConnectionConfig & PGliteDialectConfig;
 
 export class PgLiteConnection extends AbstractSqlConnection {

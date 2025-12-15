@@ -13,3 +13,5 @@ export { PgLiteDriver as PostgreSqlDriver } from './PgLiteDriver.js';
 export { PgLiteConnection as PostgreSqlConnection } from './PgLiteConnection.js';
 export { PgLitePlatform as PostgreSqlPlatform } from './PgLitePlatform.js';
 
+export { PGliteDialect } from './kysely/pglite-dialect.js';
+export { type PGliteDialectConfig } from './kysely/pglite-dialect-config.js';

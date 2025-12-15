@@ -26,7 +26,6 @@
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.3.14",
-    "@jadejr/kysely-pglite": "^1.0.4",
     "@mikro-orm/sql": "7.0.0-dev.105",
     "@mikro-orm/postgresql": "7.0.0-dev.105"
   },
@@ -60,10 +59,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "@jadejr/kysely-pglite": "patches/@jadejr__kysely-pglite.patch"
-    }
   }
 }
