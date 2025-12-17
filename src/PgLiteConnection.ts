@@ -6,8 +6,9 @@ import { vector } from '@electric-sql/pglite/vector';
 import { AbstractSqlConnection, type ConnectionConfig, Dictionary, Utils } from '@mikro-orm/sql';
 import { type QueryResult } from 'kysely';
 
-import { PGliteDialect } from './kysely/pglite-dialect';
+import { PGliteDialect } from './kysely/pglite-dialect.js';
 import { type PGliteDialectConfig } from './kysely/pglite-dialect-config.js';
+
 type PgLiteConnectionConfig = ConnectionConfig & PGliteDialectConfig;
 
 export class PgLiteConnection extends AbstractSqlConnection {
