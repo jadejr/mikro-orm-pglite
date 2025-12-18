@@ -43,7 +43,7 @@
     "typescript-eslint": "^8.50.0"
   },
   "peerDependencies": {
-    "@mikro-orm/core": "^7.0.0-dev.105"
+    "@mikro-orm/core": "^7.0.0-dev.109"
   },
   "files": [
     "dist"
