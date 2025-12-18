@@ -106,7 +106,7 @@ export class PgLiteConnection extends AbstractSqlConnection {
         this.config.set('schema', ret.schema);
       }
     } else {
-      const url = new URL(this.config.getClientUrl());
+      const url = new URL(this.config.get('clientUrl')!);
       this.options.host = ret.host = this.options.host ?? this.config.get('host', decodeURIComponent(url.pathname));
       this.options.user = ret.user = this.options.user ?? this.config.get('user', decodeURIComponent(url.username));
       if (this.options.dbName || url.searchParams.has('dbName')) {
