@@ -118,22 +118,4 @@ export class PgLiteConnection extends AbstractSqlConnection {
 
     return ret;
   }
-
-  override getClientUrl(): string {
-    const options = this.getConnectionOptions();
-
-    const params = new URLSearchParams({
-      ...(options.database ? { dbName: options.database } : {}),
-      ...(options.schema && options.schema !== this.platform.getDefaultSchemaName() ? { schema: options.schema } : {}),
-    });
-
-    const user = options.user ? `${options.user}@` : '';
-    const host = options.host ? `${options.host.replace(/\/$/, '').replace(/^\//, '')}` : '';
-    const queryParams = [...params.keys()].length > 0 ? `?${params.toString()}` : '';
-
-    const urlHost = host ? `localhost` : '';
-    const dataDir = host ? `/${host}` : '';
-
-    return `pglite://${user}${urlHost}${dataDir}${queryParams}`;
-  }
 }
