@@ -82,15 +82,10 @@ export class PgLiteConnection extends AbstractSqlConnection {
     } as unknown as T;
   }
 
-  override async loadFile(path: string): Promise<void> {
+  /** @inheritDoc */
+  override async executeDump(dump: string): Promise<void> {
     await this.ensureConnection();
-    const sql = await readFile(path);
-    await this.database.exec(sql.toString());
-  }
-
-  async loadQuery(query: string): Promise<void> {
-    await this.ensureConnection();
-    await this.database.exec(query);
+    this.database.exec(dump);
   }
 
   override getConnectionOptions(): ConnectionConfig {
