@@ -26,19 +26,18 @@
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.3.14",
-    "@mikro-orm/sql": "^7.0.0-dev.105"
+    "@mikro-orm/sql": "7.0.0-dev.109",
+    "kysely": "^0.28.9"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
-    "@mikro-orm/core": "^7.0.0-dev.105",
+    "@mikro-orm/core": "7.0.0-dev.109",
     "@types/emscripten": "^1.41.5",
     "@types/node": "^24.10.4",
-    "@types/pg": "^8.16.0",
     "@typescript-eslint/eslint-plugin": "^8.50.0",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
-    "kysely": "^0.28.9",
     "prettier": "^3.7.4",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.50.0"
