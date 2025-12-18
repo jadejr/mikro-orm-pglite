@@ -1,5 +1,3 @@
-import { readFile } from 'node:fs/promises';
-
 import { PGlite, types } from '@electric-sql/pglite';
 import { citext } from '@electric-sql/pglite/contrib/citext';
 import { vector } from '@electric-sql/pglite/vector';
