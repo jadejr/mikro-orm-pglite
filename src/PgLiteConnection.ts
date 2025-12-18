@@ -1,7 +1,7 @@
 import { PGlite, types } from '@electric-sql/pglite';
 import { citext } from '@electric-sql/pglite/contrib/citext';
 import { vector } from '@electric-sql/pglite/vector';
-import { AbstractSqlConnection, type ConnectionConfig, Dictionary, Utils } from '@mikro-orm/sql';
+import { AbstractSqlConnection, Utils, type ConnectionConfig, type Dictionary } from '@mikro-orm/sql';
 import { type QueryResult } from 'kysely';
 
 import { PGliteDialect } from './kysely/pglite-dialect.js';

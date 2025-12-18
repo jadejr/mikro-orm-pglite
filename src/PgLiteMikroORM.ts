@@ -2,14 +2,14 @@ import {
   defineConfig,
   MikroORM,
   type AnyEntity,
-  type IDatabaseDriver,
-  type Options,
   type EntityClass,
   type EntityManager,
   type EntityManagerType,
   type EntitySchema,
+  type IDatabaseDriver,
+  type Options,
 } from '@mikro-orm/core';
-import type { SqlEntityManager } from '@mikro-orm/sql';
+import { type SqlEntityManager } from '@mikro-orm/sql';
 
 import { PgLiteDriver } from './PgLiteDriver.js';
 
