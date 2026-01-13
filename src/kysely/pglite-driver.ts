@@ -11,6 +11,31 @@ import {
 import { parseSavepointCommand } from './parser/savepoint-parser.js';
 import { type PGliteDialectConfig } from './pglite-dialect-config.js';
 
+export class PGliteConnection implements DatabaseConnection {
+  readonly #client: PGlite;
+
+  constructor(client: PGlite) {
+    this.#client = client;
+  }
+
+  async executeQuery<R>(compiledQuery: CompiledQuery<any>): Promise<QueryResult<R>> {
+    const res = await this.#client.query<R>(compiledQuery.sql, [...compiledQuery.parameters]);
+    const numAffectedRows = res.affectedRows ? BigInt(res.affectedRows) : undefined;
+    // Remove affectedRows from the result, since it's not part of the standard QueryResult
+    delete res.affectedRows;
+
+    return {
+      ...res,
+      numAffectedRows,
+    };
+  }
+
+  // eslint-disable-next-line @typescript-eslint/require-await, require-yield
+  async *streamQuery(): AsyncGenerator<never, void, unknown> {
+    throw new Error('PGlite does not support streaming.');
+  }
+}
+
 export class PGliteDriver {
   readonly #config: PGliteDialectConfig;
   #client!: PGlite;
@@ -102,29 +127,4 @@ export class PGliteDriver {
   }
 
   async releaseConnection(_connection: DatabaseConnection): Promise<void> {}
-}
-
-export class PGliteConnection implements DatabaseConnection {
-  #client: PGlite;
-
-  constructor(client: PGlite) {
-    this.#client = client;
-  }
-
-  async executeQuery<R>(compiledQuery: CompiledQuery<any>): Promise<QueryResult<R>> {
-    const res = await this.#client.query<R>(compiledQuery.sql, [...compiledQuery.parameters]);
-    const numAffectedRows = res.affectedRows ? BigInt(res.affectedRows) : undefined;
-    // Remove affectedRows from the result, since it's not part of the standard QueryResult
-    delete res.affectedRows;
-
-    return {
-      ...res,
-      numAffectedRows,
-    };
-  }
-
-  // eslint-disable-next-line @typescript-eslint/require-await, require-yield
-  async *streamQuery(): AsyncGenerator<never, void, unknown> {
-    throw new Error('PGlite does not support streaming.');
-  }
 }
