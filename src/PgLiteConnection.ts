@@ -4,8 +4,8 @@ import { vector } from '@electric-sql/pglite/vector';
 import { AbstractSqlConnection, Utils, type ConnectionConfig, type Dictionary } from '@mikro-orm/sql';
 import { type QueryResult } from 'kysely';
 
-import { PGliteDialect } from './kysely/pglite-dialect.js';
 import { type PGliteDialectConfig } from './kysely/pglite-dialect-config.js';
+import { PGliteDialect } from './kysely/pglite-dialect.js';
 
 type PgLiteConnectionConfig = ConnectionConfig & PGliteDialectConfig;
 
@@ -36,7 +36,7 @@ export class PgLiteConnection extends AbstractSqlConnection {
       [types.INTERVAL]: (str: string) => str,
       // Point type (borrowed from pg-types under the MIT license)
       600: (str: string) => {
-        if (str[0] !== '(') {
+        if (!str.startsWith('(')) {
           return null;
         }
 
@@ -83,7 +83,7 @@ export class PgLiteConnection extends AbstractSqlConnection {
   /** @inheritDoc */
   override async executeDump(dump: string): Promise<void> {
     await this.ensureConnection();
-    this.database.exec(dump);
+    await this.database.exec(dump);
   }
 
   override getConnectionOptions(): ConnectionConfig {

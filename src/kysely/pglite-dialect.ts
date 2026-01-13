@@ -11,7 +11,8 @@ import {
   type Kysely,
   type QueryCompiler,
 } from 'kysely';
-import { PGliteDialectConfig } from './pglite-dialect-config.js';
+
+import { type PGliteDialectConfig } from './pglite-dialect-config.js';
 import { PGliteDriver } from './pglite-driver.js';
 
 /**

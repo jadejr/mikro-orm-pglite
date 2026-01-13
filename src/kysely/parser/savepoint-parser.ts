@@ -1,6 +1,5 @@
 // Borrowed from kysely's savepoint-parser.ts under the MIT license
-import { IdentifierNode } from 'kysely';
-import { RawNode } from 'kysely';
+import { IdentifierNode, RawNode } from 'kysely';
 
 export type RollbackToSavepoint<S extends string[], SN extends S[number]> = S extends [...infer L, infer R]
   ? R extends SN

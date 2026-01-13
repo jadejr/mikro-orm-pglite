@@ -70,6 +70,6 @@ export class PgLitePlatform extends BasePostgreSqlPlatform {
       return value.map((v) => this.escape(v)).join(', ');
     }
 
-    return value;
+    return value as string;
   }
 }

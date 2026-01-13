@@ -8,8 +8,8 @@ import {
   createQueryId,
 } from 'kysely';
 
-import { PGliteDialectConfig } from './pglite-dialect-config.js';
 import { parseSavepointCommand } from './parser/savepoint-parser.js';
+import { type PGliteDialectConfig } from './pglite-dialect-config.js';
 
 export class PGliteDriver {
   readonly #config: PGliteDialectConfig;

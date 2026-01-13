@@ -4,8 +4,8 @@ export * from './PgLiteDriver.js';
 export * from './PgLitePlatform.js';
 export {
   PgLiteMikroORM as MikroORM,
-  PgLiteOptions as Options,
   definePgLiteConfig as defineConfig,
+  type PgLiteOptions as Options,
 } from './PgLiteMikroORM.js';
 
 // compatibility exports
